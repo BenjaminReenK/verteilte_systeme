@@ -19,12 +19,10 @@ public class ParkhausVerwaltung {
     public static void main(String[] args) {
         // TODO code application logic here
         Parkhaus carPark = new Parkhaus(2);
-        
+        // create cars
         for (int i = 0; i < 10; i++) {
-            Parker carIn = new Parker(carPark, Parker.DRIVEIN);
-            Parker carOut = new Parker(carPark, Parker.DRIVEOUT);
-            carIn.start();
-            carOut.start();
+            Parker car = new Parker(carPark, i);
+            car.start();
         }
     }
     

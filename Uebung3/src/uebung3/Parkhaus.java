@@ -5,55 +5,73 @@
  */
 package uebung3;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 /**
- *
+ * carpark class
  * @author Benni
  */
 public class Parkhaus {
     private int freeSlots;
-    private int parkedCars;
-    
+    private int currentTicket;
+    private ArrayList<Parker> parkList;
+   
+    /**
+     * Constructor
+     * @param freeSlots Number of free parking slots
+     */
     public Parkhaus(int freeSlots) {
         this.freeSlots = freeSlots;
-        this.parkedCars = 0;
+        this.parkList = new ArrayList<>();
+        this.currentTicket = 0;
     }
     
-    public synchronized void driveIn() {
+    /**
+     * Method to get a Parking ticket 
+     * @param p car, carnumber gets stored in queue for fair parking
+     */
+    public synchronized void getParkTicket(Parker p) {
+        this.parkList.add(p);
+    }
+    
+    /**
+     * Car enters the carpark
+     * @return if parking was successful
+     */
+    public synchronized boolean driveIn() {
+        // put thread to sleep, if no free parking slots are aviable
         while (this.freeSlots == 0) {
             try {
                 System.out.println("no free slots");
                 wait();
+                return false;
             } catch (InterruptedException ex) {         
             }
         }
-       
+                
         this.freeSlots--;
-        this.parkedCars++;
+        this.currentTicket++;
         notifyAll();
+        return true;
     }
     
+    /**
+     * car leaves carpark
+     * make room for new cars
+     */
     public synchronized void driveOut() {
-        while (this.parkedCars == 0) {
-            try {
-                System.out.println("no parked cars");
-                wait();
-            } catch (InterruptedException ex) {         
-            }
-        }
-        
         this.freeSlots++;
-        this.parkedCars--;
         notifyAll();
     }
     
-    public int getFreeSlots() {
-        return this.freeSlots;
+    /**
+     * For fair parking...
+     * @return carnumber of the next car in queue
+     */
+    public synchronized int getNextParker() {
+        int result = this.parkList.get(this.currentTicket).getNumber();
+        
+        return result;
     }
     
-    public int getParkedCars() {
-        return this.parkedCars;
-    }
 }
