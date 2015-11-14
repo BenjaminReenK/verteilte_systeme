@@ -17,10 +17,10 @@ public class ParkhausVerwaltung {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
         Parkhaus carPark = new Parkhaus(2);
         // create cars
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 25; i++) {
             Parker car = new Parker(carPark, i);
             car.start();
         }

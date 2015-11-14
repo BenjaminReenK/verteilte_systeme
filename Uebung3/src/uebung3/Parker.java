@@ -50,22 +50,22 @@ public class Parker extends Thread{
         // get a parking ticket
         this.carpark.getParkTicket(this);
             
-            // check for position in parking queue, 
-            // wait if car isn't the next one in queue
-            while (this.number != this.carpark.getNextParker()) {
-                try {
-                    sleep((int)(Math.random() * 1000));
-                } catch (InterruptedException ex) {
-                }
+        // check for position in parking queue, 
+        // wait if car isn't the next one in queue
+        while (this.number != this.carpark.getNextParker()) {
+            try {
+                sleep((int)(Math.random() * 1000));
+            } catch (InterruptedException ex) {
             }
-            
-            // try to park
-            while(!this.carpark.driveIn()) {
-                try {
-                    sleep((int)(Math.random() * 1000));
-                } catch (InterruptedException ex) {
-                }
+        }
+
+        // try to park
+        while(!this.carpark.driveIn()) {
+            try {
+                sleep((int)(Math.random() * 1000));
+            } catch (InterruptedException ex) {
             }
+        }
         // parked    
         System.out.println("drivein (" + this.number + ")");
         // idle in carpark
