@@ -51,7 +51,7 @@ public class Parkhaus {
                 
         this.freeSlots--;
         this.currentTicket++;
-        notifyAll();
+        //notifyAll();
         return true;
     }
     

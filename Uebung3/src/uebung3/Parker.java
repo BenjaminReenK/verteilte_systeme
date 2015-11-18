@@ -5,8 +5,6 @@
  */
 package uebung3;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Parker Class
@@ -33,12 +31,12 @@ public class Parker extends Thread{
         this.number = number;
         //this.travelTime = (int) (Math.random() * 1000);
         this.travelTime = 1000;
-        this.idleTime = (int) (Math.random() * 1000);
+        this.idleTime = (int) (Math.random() * 3000);
     }
     
     /**
      * Thread.Run Function. 
-     * Drive to carpark, idle some time and leave
+     * Drive to carpark, get parkticket, park, idle some time and leave
      */
     public void run() {
         

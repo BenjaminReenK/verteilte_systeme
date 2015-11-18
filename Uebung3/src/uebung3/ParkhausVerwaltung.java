@@ -18,9 +18,9 @@ public class ParkhausVerwaltung {
      */
     public static void main(String[] args) {
         
-        Parkhaus carPark = new Parkhaus(2);
+        Parkhaus carPark = new Parkhaus(5);
         // create cars
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 50; i++) {
             Parker car = new Parker(carPark, i);
             car.start();
         }
