@@ -11,8 +11,6 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Parker Class Represents a parking car in a carpark
@@ -79,7 +77,7 @@ public class Parker extends Thread {
         while (waitingStatus) {
             try {
                 String currentTicket = sendRequest("nextInQueue");
-                if (currentTicket != parkticket) {
+                if (currentTicket.equals(parkticket)) {
                     sleep((int) (Math.random() * 1000));
                 } else {
                     waitingStatus = false;
@@ -95,7 +93,7 @@ public class Parker extends Thread {
         while (!parkStatus) {
             try {
                 String replyString = sendRequest("einparken");
-                if (replyString == "success") {
+                if (replyString.equals("success")) {
                     System.out.println("Car " + number + " now parking");
                     parkStatus = true;
                 } // parked
@@ -117,7 +115,7 @@ public class Parker extends Thread {
         // leave carpark
         try {
             String replyString = sendRequest("ausparken");
-            if (replyString == "success") {
+            if (replyString.equals("success")) {
                 System.out.println("Car " + number + " driven out");
             } else {
                 System.out.println("Something went wrong by driving out");
@@ -127,8 +125,6 @@ public class Parker extends Thread {
         } catch (IOException e) {
             System.out.println("IOE: " + e.getMessage());
         }
-        System.out.println("driveout (" + number + ")");
-
     }
 
     /**
@@ -141,6 +137,7 @@ public class Parker extends Thread {
     }
 
     private String sendRequest(String aRequest) throws IOException, InterruptedException {
+        System.out.println("sendRequest called with string " + aRequest + " for Car " + number);
         commandBytes = aRequest.getBytes();
         DatagramPacket request = new DatagramPacket(commandBytes, commandBytes.length, aHost, serverPort);
         aSocket.send(request);
@@ -148,7 +145,7 @@ public class Parker extends Thread {
         DatagramPacket reply = new DatagramPacket(buffer, buffer.length);
         aSocket.receive(reply);
         String replyString = new String(reply.getData());
-       // aSocket.close();
-        return replyString;
+        //aSocket.close();
+        return replyString.trim();
     }
 }
