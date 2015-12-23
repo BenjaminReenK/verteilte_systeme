@@ -36,7 +36,7 @@ public class Parkhaus {
                 s = new String(data, 0, request.getLength());
                 switch (s) {
                     case "einparken":
-                        // put thread to sleep, if no free parking slots are aviable
+                        System.out.println("Case Einparken called with " + freeParkingSlots + " Free Parking Slots and Current Ticket " + currentTicket);
                         if (freeParkingSlots == 0) {
                             System.out.println("no free slots");
                             s = "error";
@@ -50,26 +50,28 @@ public class Parkhaus {
                         }
                         break;
                     case "ausparken":
+                        System.out.println("Case ausparken called with " + freeParkingSlots + " Free Parking Slots and Current Ticket " + currentTicket);
                         driveOut();
                         s = "success";
                         reply = new DatagramPacket(s.getBytes(), s.getBytes().length, request.getAddress(), request.getPort());
                         aSocket.send(reply);
                         break;
                     case "neuesTicket":
+                        System.out.println("Case neuesTicket called with " + freeParkingSlots + " Free Parking Slots and Current Ticket " + currentTicket);
                         s = Integer.toString(parkList + 1);
                         parkList++;
                         reply = new DatagramPacket(s.getBytes(), s.getBytes().length, request.getAddress(), request.getPort());
                         aSocket.send(reply);
+                        break;
                     case "nextInQueue":
+                        System.out.println("Case nextInQueue called with " + freeParkingSlots + " Free Parking Slots and Current Ticket " + currentTicket);
                         s = Integer.toString(currentTicket);
                         reply = new DatagramPacket(s.getBytes(), s.getBytes().length, request.getAddress(), request.getPort());
                         aSocket.send(reply);
+                        break;
                     default:
                         break;
                 }
-                s = "Success " + s;
-                reply = new DatagramPacket(s.getBytes(), s.getBytes().length, request.getAddress(), request.getPort());
-                aSocket.send(reply);
             }
         } catch (SocketException e) {
             System.out.println("Socket: " + e.getMessage());
@@ -86,7 +88,7 @@ public class Parkhaus {
     public Parkhaus(int freeSlots, int serverSocket) {
         freeParkingSlots = freeSlots;
         parkList = 0;
-        currentTicket = 0;
+        currentTicket = 1;
         socket = serverSocket;
         System.out.println("Parkhaus " + socket + " started");
     }
@@ -97,10 +99,8 @@ public class Parkhaus {
      * @return if parking was successful
      */
     public boolean driveIn() {
-
         freeParkingSlots--;
         currentTicket++;
-        //notifyAll();
         return true;
     }
 
@@ -109,6 +109,5 @@ public class Parkhaus {
      */
     public void driveOut() {
         freeParkingSlots++;
-        notifyAll();
     }
 }
