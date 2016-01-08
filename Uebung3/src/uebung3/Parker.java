@@ -29,9 +29,9 @@ public class Parker extends Thread{
     public Parker(Parkhaus p, int number) {
         this.carpark = p;
         this.number = number;
-        //this.travelTime = (int) (Math.random() * 1000);
-        this.travelTime = 1000;
-        this.idleTime = (int) (Math.random() * 3000);
+        this.travelTime = (int) (Math.random() * 1000);
+        //this.travelTime = 1000;
+        this.idleTime = (int) (Math.random() * 5000);
     }
     
     /**
