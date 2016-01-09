@@ -69,7 +69,7 @@ public class ChatServerImpl extends UnicastRemoteObject implements ChatServer{
                 Date d = new Date(now);
                 // send our msg to the client
                 tempClient.print("[" + d.getHours() + ":" + d.getMinutes() 
-                        + ":" + d.getSeconds() + "] " + name + ": " + msg);
+                        + ":" + d.getSeconds() + "] " + "<" + name + ">: " + msg);
             }
             // remove client if there is an exception
             catch  (RemoteException e) {
