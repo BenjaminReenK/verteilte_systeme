@@ -151,34 +151,5 @@ public class Server {
 
         // Write object out to disk
         obj_out.writeObject(entity);
-        /* doc.getDocumentElement().normalize();
-
-         System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-
-         NodeList nList = doc.getElementsByTagName("Student");
-
-         System.out.println("----------------------------");
-
-         for (int temp = 0; temp < nList.getLength(); temp++) {
-
-         Node nNode = nList.item(temp);
-
-         System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
-         if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-         Element eElement = (Element) nNode;
-
-         System.out.println("Matrikelnummer : " + eElement.getElementsByTagName("Matrikelnummer").item(0).getTextContent());
-         System.out.println("Vorname : " + eElement.getElementsByTagName("Vorname").item(0).getTextContent());
-         System.out.println("Nachname : " + eElement.getElementsByTagName("Nachname").item(0).getTextContent());
-         System.out.println("Fachrichtung : " + eElement.getElementsByTagName("Fachrichtung").item(0).getTextContent());
-         System.out.println("Semester : " + eElement.getElementsByTagName("Semester").item(0).getTextContent());
-         Element wohnortElement = (Element) eElement.getElementsByTagName("Wohnort");
-         int lenghtOfWohnortElement = eElement.getElementsByTagName("Wohnort").getLength();
-         for (int tempWohnort = 0; tempWohnort < lenghtOfWohnortElement; tempWohnort++) {
-         }
-         }
-         }*/
     }
 }
