@@ -5,14 +5,7 @@
         </xsd:documentation>
     </xsd:annotation>
 
-    <xsd:element name="HTW" type="HTWType"/>
-  
-  
-    <xsd:complexType name="HTWType">
-        <xsd:sequence>
-            <xsd:element name="Professor" type="ProfessorType"/>
-        </xsd:sequence>
-    </xsd:complexType>
+    <xsd:element name="Professor" type="ProfessorType"/>
       
     <xsd:complexType name="ProfessorType">
         <xsd:sequence>
@@ -22,11 +15,6 @@
             <xsd:element name="Wohnort"  type="WohnortType"/>
             <xsd:element name="Fachbereich"  type="xsd:string"/>
             <xsd:element name="Personalnummer"  type="xsd:string"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    
-    <xsd:complexType name="WohnortType">
-        <xsd:sequence>
             <xsd:element name="Strasse" type="xsd:string"/>
             <xsd:element name="Hausnummer" type="xsd:string"/>
             <xsd:element name="Postleitzahl"  type="xsd:string"/>

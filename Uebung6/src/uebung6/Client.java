@@ -36,8 +36,8 @@ public class Client {
         socket = new Socket(host, 4444);
 
         //create the XML File
-        createXMLFileStudent();
-        // createXMLFileProfessor();
+        //createXMLFileStudent();
+        createXMLFileProfessor();
 
         File file = new File("C:\\file.xml");
         // Get the size of the file
@@ -71,56 +71,49 @@ public class Client {
 
             // root element
             Document doc = docBuilder.newDocument();
-            Element rootElement = doc.createElement("HTW");
+            Element rootElement = doc.createElement("Student");
             doc.appendChild(rootElement);
-
-            // eintrag element
-            Element eintrag = doc.createElement("Student");
-            rootElement.appendChild(eintrag);
 
             // matrikelnummer element
             Element matrikelnummer = doc.createElement("Matrikelnummer");
             matrikelnummer.appendChild(doc.createTextNode("s0539752"));
-            eintrag.appendChild(matrikelnummer);
+            rootElement.appendChild(matrikelnummer);
 
             // vornamen elements
             Element vorname = doc.createElement("Vorname");
             vorname.appendChild(doc.createTextNode("Rene"));
-            eintrag.appendChild(vorname);
+            rootElement.appendChild(vorname);
 
             // nachnamen elements
             Element nachname = doc.createElement("Nachname");
             nachname.appendChild(doc.createTextNode("Schumann"));
-            eintrag.appendChild(nachname);
-
-            Element wohnort = doc.createElement("Wohnort");
-            eintrag.appendChild(wohnort);
-
-            Element strasse = doc.createElement("Strasse");
-            strasse.appendChild(doc.createTextNode("Glienicker Strasse"));
-            wohnort.appendChild(strasse);
-
-            Element hausnummer = doc.createElement("Hausnummer");
-            hausnummer.appendChild(doc.createTextNode(" 15"));
-            wohnort.appendChild(hausnummer);
-
-            Element plz = doc.createElement("Postleitzahl");
-            plz.appendChild(doc.createTextNode(" 12557"));
-            wohnort.appendChild(plz);
-
-            Element stadt = doc.createElement("Stadt");
-            stadt.appendChild(doc.createTextNode(" Berlin"));
-            wohnort.appendChild(stadt);
+            rootElement.appendChild(nachname);
 
             // fachrichtung elements
             Element fachrichtung = doc.createElement("Fachrichtung");
             fachrichtung.appendChild(doc.createTextNode("Angewandte Informatik"));
-            eintrag.appendChild(fachrichtung);
+            rootElement.appendChild(fachrichtung);
 
             // fachrichtung elements
             Element semester = doc.createElement("Semester");
             semester.appendChild(doc.createTextNode("105"));
-            eintrag.appendChild(semester);
+            rootElement.appendChild(semester);
+            
+            Element strasse = doc.createElement("Strasse");
+            strasse.appendChild(doc.createTextNode("Glienicker Strasse"));
+            rootElement.appendChild(strasse);
+
+            Element hausnummer = doc.createElement("Hausnummer");
+            hausnummer.appendChild(doc.createTextNode(" 15"));
+            rootElement.appendChild(hausnummer);
+
+            Element plz = doc.createElement("Postleitzahl");
+            plz.appendChild(doc.createTextNode(" 12557"));
+            rootElement.appendChild(plz);
+
+            Element stadt = doc.createElement("Stadt");
+            stadt.appendChild(doc.createTextNode(" Berlin"));
+            rootElement.appendChild(stadt);
 
             // write the content into xml file
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -147,56 +140,49 @@ public class Client {
 
             // root element
             Document doc = docBuilder.newDocument();
-            Element rootElement = doc.createElement("HTW");
+            Element rootElement = doc.createElement("Professor");
             doc.appendChild(rootElement);
-
-            // eintrag element
-            Element eintrag = doc.createElement("Professor");
-            rootElement.appendChild(eintrag);
 
             // vornamen elements
             Element vorname = doc.createElement("Vorname");
             vorname.appendChild(doc.createTextNode("Rene"));
-            eintrag.appendChild(vorname);
+            rootElement.appendChild(vorname);
 
             // nachnamen elements
             Element nachname = doc.createElement("Nachname");
             nachname.appendChild(doc.createTextNode("Schumann"));
-            eintrag.appendChild(nachname);
+            rootElement.appendChild(nachname);
 
             // geburtsdatum element
             Element geburtsdatum = doc.createElement("Geburtsdatum");
             geburtsdatum.appendChild(doc.createTextNode("05.05.1980"));
-            eintrag.appendChild(geburtsdatum);
-
-            Element wohnort = doc.createElement("Wohnort");
-            eintrag.appendChild(wohnort);
-
-            Element strasse = doc.createElement("Strasse");
-            strasse.appendChild(doc.createTextNode("Glienicker Strasse"));
-            wohnort.appendChild(strasse);
-
-            Element hausnummer = doc.createElement("Hausnummer");
-            hausnummer.appendChild(doc.createTextNode("15"));
-            wohnort.appendChild(hausnummer);
-
-            Element plz = doc.createElement("Postleitzahl");
-            plz.appendChild(doc.createTextNode("12557"));
-            wohnort.appendChild(plz);
-
-            Element stadt = doc.createElement("Stadt");
-            stadt.appendChild(doc.createTextNode("Berlin"));
-            wohnort.appendChild(stadt);
+            rootElement.appendChild(geburtsdatum);
 
             // fachbereich elements
             Element fachbereich = doc.createElement("Fachbereich");
             fachbereich.appendChild(doc.createTextNode("Informatik"));
-            eintrag.appendChild(fachbereich);
+            rootElement.appendChild(fachbereich);
 
             // personalnummer elements
             Element personalnummer = doc.createElement("Personalnummer");
             personalnummer.appendChild(doc.createTextNode("123456"));
-            eintrag.appendChild(personalnummer);
+            rootElement.appendChild(personalnummer);
+            
+            Element strasse = doc.createElement("Strasse");
+            strasse.appendChild(doc.createTextNode("Glienicker Strasse"));
+            rootElement.appendChild(strasse);
+
+            Element hausnummer = doc.createElement("Hausnummer");
+            hausnummer.appendChild(doc.createTextNode("15"));
+            rootElement.appendChild(hausnummer);
+
+            Element plz = doc.createElement("Postleitzahl");
+            plz.appendChild(doc.createTextNode("12557"));
+            rootElement.appendChild(plz);
+
+            Element stadt = doc.createElement("Stadt");
+            stadt.appendChild(doc.createTextNode("Berlin"));
+            rootElement.appendChild(stadt);
 
             // write the content into xml file
             TransformerFactory transformerFactory = TransformerFactory.newInstance();

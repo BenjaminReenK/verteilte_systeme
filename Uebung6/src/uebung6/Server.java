@@ -18,6 +18,8 @@ import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.ValidationEvent;
+import javax.xml.bind.ValidationEventHandler;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -108,7 +110,7 @@ public class Server {
 
         // create a SchemaFactory and a Schema
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Source schemaFile = new StreamSource(new File("C:\\studentSchema.xsd"));
+        Source schemaFile = new StreamSource(new File("C:\\professorSchema.xsd"));
         Schema schema;
         schema = schemaFactory.newSchema(schemaFile);
 
@@ -128,11 +130,18 @@ public class Server {
 
     private static void serializeXMLAndSaveToHardDisk(File xMLtoSerializeAndSave) throws JAXBException, FileNotFoundException, IOException {
 
-        JAXBContext jaxbContext = JAXBContext.newInstance(HTW.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Professor.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        HTW entity = (HTW) jaxbUnmarshaller.unmarshal(xMLtoSerializeAndSave);
+        jaxbUnmarshaller.setEventHandler(
+                new ValidationEventHandler() {
+                    public boolean handleEvent(ValidationEvent event) {
+                        throw new RuntimeException(event.getMessage(),
+                                event.getLinkedException());
+                    }
+                });
+        Professor entity = (Professor) jaxbUnmarshaller.unmarshal(xMLtoSerializeAndSave);
 
-        System.out.println(entity.getFachrichtung());
+        System.out.println(entity.getWohnort());
 
         // Write to disk with FileOutputStream
         FileOutputStream f_out = new FileOutputStream("C:\\HTWEntity.data");

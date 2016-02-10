@@ -4,15 +4,24 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "HTW")
-public class HTW implements Serializable{
+@XmlRootElement(name = "Student")
+public class Student implements Serializable {
 
     String vorname;
     String nachname;
     String matrikelnummer;
     String semester;
     String fachrichtung;
-    String wohnort;
+    String student;
+    String strasse;
+    String hausnummer;
+    String postleitzahl;
+    String stadt;
+
+    @XmlElement(name = "Student")
+    public void setStudent(String student) {
+        this.student = student;
+    }
 
     @XmlElement(name = "Vorname")
     public void setVorname(String vorname) {
@@ -39,9 +48,24 @@ public class HTW implements Serializable{
         this.fachrichtung = fachrichtung;
     }
 
-    @XmlElement(name = "Wohnort")
-    public void setWohnort(String wohnort) {
-        this.wohnort = wohnort;
+    @XmlElement(name = "Strasse")
+    public void setStrasse(String strasse) {
+        this.strasse = strasse;
+    }
+
+    @XmlElement(name = "Hausnummer")
+    public void setHausnummer(String hausnummer) {
+        this.hausnummer = hausnummer;
+    }
+
+    @XmlElement(name = "Postleitzahl")
+    public void setPostleitzahl(String postleitzahl) {
+        this.postleitzahl = postleitzahl;
+    }
+
+    @XmlElement(name = "Stadt")
+    public void setStadt(String stadt) {
+        this.stadt = stadt;
     }
 
     public String getVorname() {
@@ -64,7 +88,23 @@ public class HTW implements Serializable{
         return fachrichtung;
     }
 
-    public String getWohnort() {
-        return wohnort;
+    public String getStrasse() {
+        return strasse;
+    }
+
+    public String getHausnummer() {
+        return hausnummer;
+    }
+
+    public String getPostleitzahl() {
+        return postleitzahl;
+    }
+
+    public String getStadt() {
+        return stadt;
+    }
+    
+    public String getWohnort(){
+        return strasse +  " " + hausnummer +  " " + postleitzahl +  " " + stadt;
     }
 }
